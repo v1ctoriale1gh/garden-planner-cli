@@ -18,6 +18,7 @@ class User
 
     def set_location(input)
         #search for correct format with regex, puts error incorrect location
+        #if a space, add %20 in the space use gsub
         city, state = input.split(", ")
         @city= "#{city.capitalize}"
         @state= "#{state.upcase}"
