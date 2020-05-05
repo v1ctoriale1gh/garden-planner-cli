@@ -13,6 +13,8 @@ class GardenPlanner::CLI
         second_input = gets.chomp
         user.set_location(second_input)
         user.create_location_html
+        scraper = Scraper.new(user.location_html)
+        
         binding.pry
         
 
