@@ -4,19 +4,63 @@ class GardenPlanner::CLI
 
 
     def call
+    
+
+        
+        
         input = ""
         puts "Welcome to the Garden Planner CLI! Please enter your name."
         input = gets.chomp
         user = User.new(input)
         puts "Hello, #{user.name}! What location would you like to plan your garden?
         (enter city and state)"
+    
+        
+        
         second_input = gets.chomp
         user.set_location(second_input)
         user.create_location_html
         scraper = Scraper.new(user.location_html)
+       
 
-        binding.pry
-        
+        puts "These are the vegetables that are viable in #{user.location}."
+        Vegetable.display_vegetables
+        puts "Please choose a vegetable for more information on growing tips!"
+        third_input = gets.chomp
+
+        scraper.make_second_layer_url(third_input)
+
+        #binding.pry
+    end 
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -59,7 +103,3 @@ class GardenPlanner::CLI
         
         
        # input = gets.strip.upcase
-
-    end
-
-end

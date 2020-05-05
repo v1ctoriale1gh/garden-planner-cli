@@ -3,12 +3,12 @@ require_relative 'lib/garden_planner/version'
 Gem::Specification.new do |spec|
   spec.name          = "garden_planner"
   spec.version       = GardenPlanner::VERSION
-  spec.authors       = ["<github username>"]
-  spec.email         = ["<github email address>"]
+  spec.authors       = ["torishillcutt"]
+  spec.email         = ["torishillcutt@gmail.com"]
 
   spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/torishillcutt/garden-planner-cli"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
