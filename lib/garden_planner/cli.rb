@@ -23,12 +23,26 @@ class GardenPlanner::CLI
         scraper = Scraper.new(user.location_html)
        
 
-        puts "These are the vegetables that are viable in #{user.location}."
+        puts "These are the vegetables that are viable for an outside planting in #{user.location}."
         Vegetable.display_vegetables
+        puts "#{scraper.last_frost}"
         puts "Please choose a vegetable for more information on growing tips!"
         third_input = gets.chomp
 
-        scraper.make_second_layer_url(third_input)
+        scraper.scrape_individual_vegetable(third_input)
+        
+        
+        
+        
+        
+        #########TODO###########
+        #add veggie to veggie garden
+        #back option
+        #exit option
+        #display users veggie garden sorted alphabetically or by planting_date
+        #more info about each veggie from within veggie garden page
+        
+        #once all of this functionality is added, make it pretty
 
         #binding.pry
     end 

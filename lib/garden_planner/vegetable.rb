@@ -1,18 +1,18 @@
 class Vegetable
-    attr_accessor :name, :url, :planting_dates, :number
+    attr_accessor :name, :url, :planting_date, :number, :bio, :picture, :sun, :soil_type, :soil_ph, :bloom
     @@all = []
 
-    def initialize(name, url, inside_planting = nil, outside_planting = nil)
-        @planting_dates= []
+    def initialize(name, url, planting_date= nil)
+        @planting_date= planting_date
         @name= name
         @url= url
-        #IF INSIDE AND OUTSIDE BOTH EXIST ELSIF ONLY ONE EXIST ESLE IF THE OTHER EXIST
-       # @planting_dates << inside_planting && outside_planting
-       save
+        save
     end
 
     def save
+        if self.planting_date != nil
         @@all << self
+        end
     end
 
     def self.all
@@ -24,7 +24,9 @@ class Vegetable
     end
 
 
-    
+    def more_attributes(attributes)
+        attributes.each{|key, value| self.send(("#{key}="), value )}
+    end
     #mass assign more attributes from withing second level scraping
 
 end
