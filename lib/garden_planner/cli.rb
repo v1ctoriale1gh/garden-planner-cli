@@ -21,6 +21,7 @@ class GardenPlanner::CLI
         user.set_location(second_input)
         user.create_location_html
         scraper = Scraper.new(user.location_html)
+        
        
 
         puts "These are the vegetables that are viable for an outside planting in #{user.location}."
@@ -28,8 +29,8 @@ class GardenPlanner::CLI
         puts "#{scraper.last_frost}"
         puts "Please choose a vegetable for more information on growing tips!"
         third_input = gets.chomp
-
-        scraper.scrape_individual_vegetable(third_input)
+        scraper.scrape_vegetable(third_input)
+        
         
         
         
@@ -39,7 +40,7 @@ class GardenPlanner::CLI
         #add veggie to veggie garden
         #back option
         #exit option
-        #display users veggie garden sorted alphabetically or by planting_date
+        #display user's veggie garden sorted alphabetically or by planting_date
         #more info about each veggie from within veggie garden page
         
         #once all of this functionality is added, make it pretty

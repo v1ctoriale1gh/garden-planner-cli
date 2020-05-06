@@ -11,7 +11,7 @@ class Vegetable
 
     def save
         if self.planting_date != nil
-        @@all << self
+        @@all << self 
         end
     end
 

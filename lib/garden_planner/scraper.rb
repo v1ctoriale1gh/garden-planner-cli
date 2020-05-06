@@ -9,6 +9,7 @@ class Scraper
     attr_accessor :url, :secondUrl, :last_frost, :scraped_vegetable
 
     def initialize(url)
+        ######First level scrape- interpolated  user.location into URL in user class####
         @url= url
         html = open(url)
         doc = Nokogiri::HTML(html)
@@ -26,31 +27,55 @@ class Scraper
             end 
         end
     end
+        
+    def scrape_vegetable(third_input)
+            #######second level scrape - imake individual veggie url ############
+            ######(green beans url is the one exception to how the url is written#######
+            ##### Website fails if you iterate over each vegetable#######
+            ##### Mass assigns vegetable attributes to the vegetable chosen by the user#####
+        veg = Vegetable.all.detect {|vegetable| vegetable.name == third_input.capitalize}
+            if veg.name == "Green Beans"
+                secondUrl = "https://www.almanac.com/plant/beans"
+            else
+                secondUrl = "https://www.almanac.com/plant/#{veg.name.gsub(" ", "-")}"
+            end
+    
+            html = open(secondUrl)
+            doc = Nokogiri::HTML(html)
+            #binding.pry
+            @scraped_vegetable_hash = {}
+            @scraped_vegetable_hash[:bio] = doc.css("div.field-item.even").children[5..10].text
+            @scraped_vegetable_hash[:picture] = doc.css("span.field-content").children[0].attribute("src").value
+            if doc.css("td.views-field.views-field-field-sun-exposure-term.views-column-odd.views-column-first.views-column-last").text.strip != ""
+                @scraped_vegetable_hash[:sun] = doc.css("td.views-field.views-field-field-sun-exposure-term.views-column-odd.views-column-first.views-column-last").text.strip
+            end
+            if doc.css("td.views-field.views-field-field-soil-type-term.views-column-odd.views-column-first.views-column-last").text.strip != ""
+                @scraped_vegetable_hash[:soil_type] = doc.css("td.views-field.views-field-field-soil-type-term.views-column-odd.views-column-first.views-column-last").text.strip
+            end
+            if  doc.css("td.views-field.views-field-field-soil-ph-term.views-column-odd.views-column-first.views-column-last").text.strip != ""
+                @scraped_vegetable_hash[:soil_ph] = doc.css("td.views-field.views-field-field-soil-ph-term.views-column-odd.views-column-first.views-column-last").text.strip
+            end
+            if doc.css("td.views-field.views-field-field-bloom-time-term.views-column-odd.views-column-first.views-column-last").text.strip != ""
+                @scraped_vegetable_hash[:bloom] = doc.css("td.views-field.views-field-field-bloom-time-term.views-column-odd.views-column-first.views-column-last").text.strip
+            end
 
+            veg.more_attributes(@scraped_vegetable_hash)
+            binding.pry
+        
+        
+    end
+
+    ### DILL BIO  doc.css("div.field-item.even").children[5..10].text----- Each ones length slightly varies 
+    ########TECHNICAL QUESTION HOW TO GET RID OF \n###########
+
+    #### PICTURE doc.css("span.field-content").children[0].attribute("src").value
+    #### sun = doc.css("td.views-field.views-field-field-sun-exposure-term.views-column-odd.views-column-first.views-column-last").text.strip
+    #### soil_type = doc.css("td.views-field.views-field-field-soil-type-term.views-column-odd.views-column-first.views-column-last").text.strip
+    ###### soil_ph = doc.css("td.views-field.views-field-field-soil-ph-term.views-column-odd.views-column-first.views-column-last").text.strip
+
+    #if .text.strip != ""
+    #bloom = doc.css("td.views-field.views-field-field-bloom-time-term.views-column-odd.views-column-first.views-column-last").text.strip
     
 
-    def scrape_individual_vegetable(third_input)
-        vegetable = Vegetable.all.detect {|vegetable| vegetable.name == third_input}
-        @secondUrl = "https://www.almanac.com/plant/#{vegetable.name.gsub(" ", "-")}"
-        
-        html = open(url)
-        doc = Nokogiri::HTML(html)
-        #binding.pry
-        @scraped_vegetable = {}
-
-        @scraped_vegetable[:bio] = "this is a fake test bio"
-        @scraped_vegetable[:picture] = "this is a picture url"
-        @scraped_vegetable[:sun] = "this veggie likes full sun"
-        @scraped_vegetable[:soil_type] = "barky"
-        @scraped_vegetable[:soil_ph] = "7.6"
-        @scraped_vegetable[:bloom] = "blooms at that time right before it gets hot af"
-
-        vegetable.more_attributes(@scraped_vegetable)
-        #binding.pry
-        puts "#{vegetable.name}"
-    end
-    #second level scrape for mass assignment of vegetable attribute
-
 end
-
 
