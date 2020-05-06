@@ -1,19 +1,36 @@
 require "pry"
+require "colorize"
+require "lolcat"
 
 class GardenPlanner::CLI
 
 
     def call
+                                                                                                                                                                      
     
+        banner = 
+        "          ::::::::      :::     :::::::::  :::::::::  :::::::::: ::::    :::      :::::::::  :::            :::     ::::    ::: ::::    ::: :::::::::: :::::::::  
+        :+:    :+:   :+: :+:   :+:    :+: :+:    :+: :+:        :+:+:   :+:      :+:    :+: :+:          :+: :+:   :+:+:   :+: :+:+:   :+: :+:        :+:    :+: 
+        +:+         +:+   +:+  +:+    +:+ +:+    +:+ +:+        :+:+:+  +:+      +:+    +:+ +:+         +:+   +:+  :+:+:+  +:+ :+:+:+  +:+ +:+        +:+    +:+ 
+        :#:        +#++:++#++: +#++:++#:  +#+    +:+ +#++:++#   +#+ +:+ +#+      +#++:++#+  +#+        +#++:++#++: +#+ +:+ +#+ +#+ +:+ +#+ +#++:++#   +#++:++#:  
+        +#+   +#+# +#+     +#+ +#+    +#+ +#+    +#+ +#+        +#+  +#+#+#      +#+        +#+        +#+     +#+ +#+  +#+#+# +#+  +#+#+# +#+        +#+    +#+ 
+        #+#    #+# #+#     #+# #+#    #+# #+#    #+# #+#        #+#   #+#+#      #+#        #+#        #+#     #+# #+#   #+#+# #+#   #+#+# #+#        #+#    #+# 
+         ########  ###     ### ###    ### #########  ########## ###    ####      ###        ########## ###     ### ###    #### ###    #### ########## ###    ###"
+    
+         puts banner.green
 
         
         
         input = ""
-        puts "Welcome to the Garden Planner CLI! Please enter your name."
+        puts ""
+        puts ""
+        puts "                                                    Welcome to the Garden Planner CLI! Please enter your name.".green
         input = gets.chomp
         user = User.new(input)
-        puts "Hello, #{user.name}! What location would you like to plan your garden?
-        (enter city and state)"
+        puts ""
+        puts ""
+        puts "                                                  Hello,".green + "#{user.name}".magenta + "! What location would you like to plan your garden?
+                                                                          (enter city and state)".green
     
         
         
@@ -23,15 +40,27 @@ class GardenPlanner::CLI
         scraper = Scraper.new(user.location_html)
         
        
-
-        puts "These are the vegetables that are viable for an outside planting in #{user.location}."
+        puts ""
+        puts ""
+        puts "                                           These are the vegetables that are viable for an outside planting in #{user.location}:".green
+        puts ""
+        
+        
+        
         Vegetable.display_vegetables
-        puts "#{scraper.last_frost}"
-        puts "Please choose a vegetable for more information on growing tips!"
+        puts ""
+        puts ""
+
+        puts "                            #{scraper.last_frost}".cyan
+        puts ""
+
+        puts "                                           =====Go back type B || To display more type vegetable name || EXIT type C=====".magenta
+        puts""
+        puts ""
         third_input = gets.chomp
         scraper.scrape_vegetable(third_input)
         Vegetable.display_one(third_input)
-        
+
         
         
         
@@ -52,7 +81,6 @@ class GardenPlanner::CLI
     end 
 
 end
-
 
 
 

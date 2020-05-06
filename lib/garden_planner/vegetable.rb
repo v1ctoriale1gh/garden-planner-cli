@@ -20,7 +20,19 @@ class Vegetable
     end
 
     def self.display_vegetables
-        @@all.each_with_index {|vegetable, index| puts "#{index+1}  #{vegetable.name}"}
+        if @@all.length == 15
+            puts "                                                            #{@@all[0].name}       ||   #{@@all[1].name}    ||     #{@@all[2].name} ".green    
+            puts ""
+            puts "                                                            #{@@all[3].name}        ||    #{@@all[4].name}      ||     #{@@all[5].name} ".magenta
+            puts ""
+            puts "                                                            #{@@all[6].name}        ||    #{@@all[7].name}    ||     #{@@all[8].name} ".light_blue
+            puts ""     
+            puts "                                                            #{@@all[9].name}    ||    #{@@all[10].name}      ||     #{@@all[11].name} ".magenta
+            puts ""
+            puts "                                                            #{@@all[12].name}    ||   #{@@all[13].name}    ||     #{@@all[14].name} ".green
+        else    
+            Vegetable.all.each {|vegetable| puts "#{vegetable.name}".green}
+        end
     end
 
     def self.display_one(input)
@@ -41,26 +53,26 @@ class Vegetable
             attribute_array << veg.bloom
         end
 
-        puts "                                      #{veg.name}"
+        puts "                                      #{veg.name}".magenta
         puts ""
-        puts "#{veg.bio}"
+        puts "#{veg.bio}".green
         puts ""
 
 
         if attribute_array.length == 1
-            puts "                              #{attribute_array[0]}"
+            puts "                                                                              #{attribute_array[0]}".magenta
         elsif attribute_array.length == 2
-            puts "                  #{attribute_array[0]} || #{attribute_array[1]}"
+            puts "                                                                   #{attribute_array[0]} || #{attribute_array[1]}".magenta
         elsif attribute_array.length == 3
-            puts "        #{attribute_array[0]} || #{attribute_array[1]} || #{attribute_array[2]}"  
+            puts "                                                  #{attribute_array[0]} || #{attribute_array[1]} || #{attribute_array[2]}".magenta  
         elsif attribute_array.length == 4
-            puts "#{attribute_array[0]} || #{attribute_array[1]} || #{attribute_array[2]} || #{attribute_array[3]}"
+            puts "                                  #{attribute_array[0]} || #{attribute_array[1]} || #{attribute_array[2]} || #{attribute_array[3]}".magenta
         end
 
 
         puts ""
         puts ""
-        puts "   =====Go back type B || Add #{veg.name} to your vegetable garden type A || EXIT type C=====" 
+        puts "                                        =====Go back type B || Add #{veg.name} to your vegetable garden type A || EXIT type C=====".magenta 
         puts ""
         puts ""
     end
