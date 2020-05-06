@@ -30,6 +30,9 @@ class GardenPlanner::CLI
         puts "Please choose a vegetable for more information on growing tips!"
         third_input = gets.chomp
         scraper.scrape_vegetable(third_input)
+        Vegetable.display_one(third_input)
+        
+        
         
         
         
