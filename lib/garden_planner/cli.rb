@@ -4,10 +4,29 @@ require "lolcat"
 
 class GardenPlanner::CLI
 
+     #any variable that the user inputs that the whole app will need should be stored as instance variables, even if the variable is an object
 
     def call
-                                                                                                                                                                      
-    
+        intro 
+        display_vegetables
+        main_menu
+        #escit
+
+        
+        
+        #########TODO###########
+        
+        
+        #exit banner
+        #format garden display
+        #add menu option to display individual veggie from garden
+        #add back menu from veggiegardeninidivdual veggie
+        #add final garden back menu options
+        #add custom error messages
+    end 
+
+
+    def intro 
         banner = 
         "          ::::::::      :::     :::::::::  :::::::::  :::::::::: ::::    :::      :::::::::  :::            :::     ::::    ::: ::::    ::: :::::::::: :::::::::  
         :+:    :+:   :+: :+:   :+:    :+: :+:    :+: :+:        :+:+:   :+:      :+:    :+: :+:          :+: :+:   :+:+:   :+: :+:+:   :+: :+:        :+:    :+: 
@@ -26,59 +45,71 @@ class GardenPlanner::CLI
         puts ""
         puts "                                                    Welcome to the Garden Planner CLI! Please enter your name.".green
         input = gets.chomp
-        user = User.new(input)
+        @user = User.new(input)
         puts ""
         puts ""
-        puts "                                                  Hello,".green + "#{user.name}".magenta + "! What location would you like to plan your garden?
+        puts "                                                  Hello,".green + " #{@user.name}".magenta + "! What location would you like to plan your garden?
                                                                           (enter city and state)".green
     
         
         
         second_input = gets.chomp
-        user.set_location(second_input)
-        user.create_location_html
-        scraper = Scraper.new(user.location_html)
+        @user.set_location(second_input)
+        @user.create_location_html
+        @scraper = Scraper.new(@user.location_html)
         
        
         puts ""
         puts ""
-        puts "                                           These are the vegetables that are viable for an outside planting in #{user.location}:".green
+        puts "                                           These are the vegetables that are viable for an outside planting in #{@user.location}:".green
         puts ""
-        
-        
-        
+    end
+
+    def main_menu 
+        input = gets.chomp 
+        if input != "C" && Vegetable.find_by_input(input) != nil
+            display_one_vegetable(input)
+            main_menu
+        elsif input != "C" && input == "garden"
+            User.display_garden ############NEED TO PUT CASE STATEMENTS IN DISPLAY GARDEN METHOD TO VIEW VEGETABLE FURTHER THEN FROM THERE TO GO BACK
+            main_menu
+        elsif input != "C"  && input == "B"
+            display_vegetables
+            main_menu
+        else
+            self.escit
+        end
+    end
+
+    def display_vegetables
         Vegetable.display_vegetables
         puts ""
         puts ""
 
-        puts "                            #{scraper.last_frost}".cyan
+        puts "                            #{@scraper.last_frost}".cyan
         puts ""
-
-        puts "                                           =====Go back type B || To display more type vegetable name || EXIT type C=====".magenta
+        puts "                         =====To see your vegetable garden type garden || To display more type vegetable name || EXIT type C=====".magenta
         puts""
         puts ""
-        third_input = gets.chomp
-        scraper.scrape_vegetable(third_input)
-        Vegetable.display_one(third_input)
+    end
 
-        
-        
-        
-        
-        
-        
-        
-        #########TODO###########
-        #add veggie to veggie garden
-        #back option
-        #exit option
-        #display user's veggie garden sorted alphabetically or by planting_date
-        #more info about each veggie from within veggie garden page
-        
-        #once all of this functionality is added, make it pretty
+    def display_one_vegetable(input)
+        @scraper.scrape_vegetable(input)
+        Vegetable.display_one(input)
+    end
 
-        #binding.pry
-    end 
+
+    def escit
+        banner =
+        "          ::::::::   ::::::::   ::::::::  :::::::::       :::::::::  :::   ::: :::::::::: ::: 
+        :+:    :+: :+:    :+: :+:    :+: :+:    :+:      :+:    :+: :+:   :+: :+:        :+: 
+        +:+        +:+    +:+ +:+    +:+ +:+    +:+      +:+    +:+  +:+ +:+  +:+        +:+ 
+        :#:        +#+    +:+ +#+    +:+ +#+    +:+      +#++:++#+    +#++:   +#++:++#   +#+ 
+        +#+   +#+# +#+    +#+ +#+    +#+ +#+    +#+      +#+    +#+    +#+    +#+        +#+ 
+        #+#    #+# #+#    #+# #+#    #+# #+#    #+#      #+#    #+#    #+#    #+#            
+         ########   ########   ########  #########       #########     ###    ########## ### "
+         puts banner.green
+    end
 
 end
 

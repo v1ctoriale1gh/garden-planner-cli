@@ -35,6 +35,13 @@ class Vegetable
         end
     end
 
+
+    def self.find_by_input(input)
+        formatted_input = input.split.map {|word| word.capitalize}.join(' ')
+        veg = Vegetable.all.detect {|vegetable| vegetable.name == formatted_input}
+        veg
+    end
+
     def self.display_one(input)
         formatted_input = input.split.map {|word| word.capitalize}.join(' ')
         veg = Vegetable.all.detect {|vegetable| vegetable.name == formatted_input}
@@ -69,18 +76,30 @@ class Vegetable
             puts "                                  #{attribute_array[0]} || #{attribute_array[1]} || #{attribute_array[2]} || #{attribute_array[3]}".magenta
         end
 
+        puts ""
+        puts ""
+        puts "                                                                          Do you want to add #{self.name} to your vegetable garden?
+                                                                                                                    (Yes or No)"
+        input = gets.chomp
+        if input.capitalize == "Yes"
+            User.add_vegetable(veg)
+        puts "                                                                          #{veg.name} has been added to your Garden!".green
+        puts ""
+        puts ""
+        puts "                       =====Go back type B || Add #{veg.name} to your vegetable garden type A || See your garden type garden|| EXIT type C=====".magenta 
+        else
 
         puts ""
         puts ""
-        puts "                                        =====Go back type B || Add #{veg.name} to your vegetable garden type A || EXIT type C=====".magenta 
+        puts "                       =====Go back type B || Add #{veg.name} to your vegetable garden type A || See your garden type garden || EXIT type C=====".magenta 
         puts ""
         puts ""
+        end
     end
 
 
     def more_attributes(attributes)
         attributes.each{|key, value| self.send(("#{key}="), value )}
     end
-    #mass assign more attributes from withing second level scraping
 
 end
