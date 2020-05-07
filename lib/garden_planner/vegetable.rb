@@ -60,7 +60,7 @@ class Vegetable
             attribute_array << veg.bloom
         end
 
-        puts "                                      #{veg.name}".magenta
+        puts "                                                                                    #{veg.name}".magenta
         puts ""
         puts "#{veg.bio}".green
         puts ""
@@ -78,20 +78,20 @@ class Vegetable
 
         puts ""
         puts ""
-        puts "                                                                          Do you want to add #{self.name} to your vegetable garden?
-                                                                                                                    (Yes or No)"
+        puts "                                                          Do you want to add #{self.name} to your vegetable garden?
+                                                                              (Yes or No)".magenta
         input = gets.chomp
         if input.capitalize == "Yes"
             User.add_vegetable(veg)
-        puts "                                                                          #{veg.name} has been added to your Garden!".green
+        puts "                                                                #{veg.name} has been added to your Garden!".green
         puts ""
         puts ""
-        puts "                       =====Go back type B || Add #{veg.name} to your vegetable garden type A || See your garden type garden|| EXIT type C=====".magenta 
+        puts "                                                     =====Go back type B  || See your garden type garden || EXIT type C=====".magenta 
         else
 
         puts ""
         puts ""
-        puts "                       =====Go back type B || Add #{veg.name} to your vegetable garden type A || See your garden type garden || EXIT type C=====".magenta 
+        puts "                                                    =====Go back type B  || See your garden type garden || EXIT type C=====".magenta 
         puts ""
         puts ""
         end

@@ -49,7 +49,7 @@ class GardenPlanner::CLI
         puts ""
         puts ""
         puts "                                                  Hello,".green + " #{@user.name}".magenta + "! What location would you like to plan your garden?
-                                                                          (enter city and state)".green
+                                                                    (Enter City, State or City, ST)".green
     
         
         
@@ -61,8 +61,7 @@ class GardenPlanner::CLI
        
         puts ""
         puts ""
-        puts "                                           These are the vegetables that are viable for an outside planting in #{@user.location}:".green
-        puts ""
+        
     end
 
     def main_menu 
@@ -82,13 +81,15 @@ class GardenPlanner::CLI
     end
 
     def display_vegetables
+        puts "                                           These are the vegetables that are viable for an outside planting in #{@user.location}:".green
+        puts ""
         Vegetable.display_vegetables
         puts ""
         puts ""
 
         puts "                            #{@scraper.last_frost}".cyan
         puts ""
-        puts "                         =====To see your vegetable garden type garden || To display more type vegetable name || EXIT type C=====".magenta
+        puts "                            =====To see your vegetable garden type garden || To display more type vegetable name || EXIT type C=====".magenta
         puts""
         puts ""
     end
@@ -101,13 +102,13 @@ class GardenPlanner::CLI
 
     def escit
         banner =
-        "          ::::::::   ::::::::   ::::::::  :::::::::       :::::::::  :::   ::: :::::::::: ::: 
-        :+:    :+: :+:    :+: :+:    :+: :+:    :+:      :+:    :+: :+:   :+: :+:        :+: 
-        +:+        +:+    +:+ +:+    +:+ +:+    +:+      +:+    +:+  +:+ +:+  +:+        +:+ 
-        :#:        +#+    +:+ +#+    +:+ +#+    +:+      +#++:++#+    +#++:   +#++:++#   +#+ 
-        +#+   +#+# +#+    +#+ +#+    +#+ +#+    +#+      +#+    +#+    +#+    +#+        +#+ 
-        #+#    #+# #+#    #+# #+#    #+# #+#    #+#      #+#    #+#    #+#    #+#            
-         ########   ########   ########  #########       #########     ###    ########## ### "
+        "                                                    ::::::::   ::::::::   ::::::::  :::::::::       :::::::::  :::   ::: :::::::::: ::: 
+                                                   :+:    :+: :+:    :+: :+:    :+: :+:    :+:      :+:    :+: :+:   :+: :+:        :+: 
+                                                   +:+        +:+    +:+ +:+    +:+ +:+    +:+      +:+    +:+  +:+ +:+  +:+        +:+ 
+                                                   :#:        +#+    +:+ +#+    +:+ +#+    +:+      +#++:++#+    +#++:   +#++:++#   +#+ 
+                                                   +#+   +#+# +#+    +#+ +#+    +#+ +#+    +#+      +#+    +#+    +#+    +#+        +#+ 
+                                                   #+#    #+# #+#    #+# #+#    #+# #+#    #+#      #+#    #+#    #+#    #+#            
+                                                    ########   ########   ########  #########       #########     ###    ########## ### "
          puts banner.green
     end
 
