@@ -1,8 +1,6 @@
 # GardenPlanner
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/garden_planner`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to your new the Garden Planner CLI!  This CLI gives you a list of viable plants for an outdoor garden in the location of your choice that you can then plant in your own 8 planting spaces (you can add many of the same or different vegetables to your own garden).  
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To run the CLI, enter ./garden_planner after entering into to the bin folder.  Follow the prompts and press "C" to exit.
 
 ## Development
 
