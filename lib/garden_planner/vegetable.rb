@@ -1,5 +1,5 @@
 class Vegetable
-    attr_accessor :name, :url, :planting_date, :number, :bio, :picture, :sun, :soil_type, :soil_ph, :bloom
+    attr_accessor :name, :url, :planting_date, :number, :bio, :picture, :sun, :soil_type, :soil_ph, :bloom, :user
     @@all = []
 
     def initialize(name, url, planting_date= nil)
@@ -33,6 +33,10 @@ class Vegetable
         else    
             Vegetable.all.each {|vegetable| puts "#{vegetable.name}".green}
         end
+    end
+
+    def user=(user)
+        @user= user
     end
 
 

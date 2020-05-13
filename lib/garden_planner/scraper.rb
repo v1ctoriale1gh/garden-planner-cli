@@ -1,9 +1,4 @@
 
-require 'nokogiri'
-require 'pry'
-require 'open-uri'
-
-
 class Scraper
 
     attr_accessor :url, :secondUrl, :last_frost, :scraped_vegetable

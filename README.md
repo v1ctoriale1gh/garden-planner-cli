@@ -1,6 +1,6 @@
 # GardenPlanner
 
-Welcome to your new the Garden Planner CLI!  This CLI gives you a list of viable plants for an outdoor garden in the location of your choice that you can then plant in your own 8 planting spaces (you can add many of the same or different vegetables to your own garden).  
+Welcome to your new the Garden Planner CLI!  This CLI gives you a list of viable plants for an outdoor garden in the location of your choice that you can then plant in your own 8 planting spaces (you can add many of the same or different vegetables to your own garden).  Each plant contains a bio and more planting information to help your garden be a success!
 
 ## Installation
 

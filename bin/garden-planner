@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require '../lib/environment'
+require_relative '../lib/environment'
 
  GardenPlanner::CLI.new.call

@@ -1,4 +1,4 @@
-require "colorize"
+
 
 class User
     attr_accessor :name, :city, :state, :location, :location_html, :vegetable_garden
@@ -31,6 +31,7 @@ class User
 
     def self.add_vegetable(vegetable)
          if @@vegetable_garden.length < 8
+            vegetable.user = self
             @@vegetable_garden << vegetable
         end
     end

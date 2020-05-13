@@ -1,7 +1,3 @@
-require "pry"
-require "colorize"
-require "lolcat"
-
 class GardenPlanner::CLI
 
     def call
@@ -36,13 +32,18 @@ class GardenPlanner::CLI
         puts "                                                  Hello,".green + " #{@user.name}".magenta + "! What location would you like to plan your garden?
                                                                     (Enter City, State or City, ST)".green
     
-        
-        
+        begin
         second_input = gets.chomp
         @user.set_location(second_input)
         @user.create_location_html
         @scraper = Scraper.new(@user.location_html)
-        
+        rescue
+        puts "                                                     ERROR:  Please enter your location in the correct format!".magenta
+        second_input = gets.chomp
+        @user.set_location(second_input)
+        @user.create_location_html
+        @scraper = Scraper.new(@user.location_html)
+        end
        
         puts ""
         puts ""
@@ -51,18 +52,23 @@ class GardenPlanner::CLI
 
     def main_menu 
         input = gets.chomp 
-        if input.capitalize != "C" && Vegetable.find_by_input(input) != nil
+        if input.capitalize == "C"
+            self.escit
+        elsif Vegetable.find_by_input(input) != nil
             display_one_vegetable(input)
             main_menu
-        elsif input.capitalize != "C" && input.capitalize == "Garden"
+        elsif input.capitalize == "Garden"
             User.display_garden
             main_menu
-        elsif input.capitalize != "C"  && input.capitalize == "B"
+        elsif input.capitalize == "B"
             display_vegetables
             main_menu
         else
-            self.escit
+            puts "                                                                            Please enter a valid entry".magenta
+            main_menu
         end
+    
+
     end
 
     def display_vegetables
